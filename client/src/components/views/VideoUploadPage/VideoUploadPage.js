@@ -8,6 +8,12 @@ const PrivateOptions = [
 	{ value: 0, label: "Private" },
 	{ value: 1, label: "Public"}
 ]
+const CategoryOptions = [
+	{ value: 0, label: "Film & Animation"},
+	{ value: 1, label: "Autos & Vehicles"},
+	{ value: 2, label: "Music"},
+	{ value: 3, label: "Pets & Animals"},
+]
 
 //functional component
 function VideoUploadPage() {
@@ -20,6 +26,11 @@ function VideoUploadPage() {
 
 	// 카테고리는 처음 미리 선택돼있는게 Film & Animation이기 때문에 그렇게 설정해준다.
 	const [Category, setCategory] = useState("Film & Animation")
+
+	// 이따가 돌아와서는 여기에서부터 다시 공부
+	const onTitleChange = (e) => {
+		setVideoTitle(e.currentTarget.value)
+	}
 
 	return (
 		<div style={{ maxWidth:'700px', margin:'2rem auto' }}>
@@ -54,33 +65,30 @@ function VideoUploadPage() {
 			<br />
 			<label>Title</label>
 			<Input
-				onChange
+				onChange={onTitleChange}
 				value={VideoTitle}
 			/>
 			<br />
 			<br />
 			<label>Description</label>
 			<TextArea
-				onChange
+				onChange={onDescriptionChange}
 				value={Description}
 			/>
 			<br />
 			<br />
 
-			<select onChange>
-				
+			<select onChange>			
 				{PrivateOptions.map((item, index) => (
 					<option key={index} value = {item.value}>{item.label}</option>
 				))}
-
-				<option key value></option>
-				<option key value></option>
 			</select>
-
 			<br />
 			<br />
 			<select onChange>
-				<option key value></option>
+				{CategoryOptions.map((item, index) => (
+					<option key={index} value = {item.value}>{item.label}</option>
+				))}
 			</select>
 			<br />
 			<br />
