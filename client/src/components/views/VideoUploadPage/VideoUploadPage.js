@@ -26,12 +26,18 @@ function VideoUploadPage() {
 
 	// 카테고리는 처음 미리 선택돼있는게 Film & Animation이기 때문에 그렇게 설정해준다.
 	const [Category, setCategory] = useState("Film & Animation")
-
-	// 이따가 돌아와서는 여기에서부터 다시 공부
 	const onTitleChange = (e) => {
 		setVideoTitle(e.currentTarget.value)
 	}
-
+	const onDescriptionChange = (e) => {
+		setDescription(e.currentTarget.value)
+	}
+	const onPrivateChange = (e) => {
+		setPrivate(e.currentTarget.value)
+	}
+	const onCategoryChange = (e) => {
+		setCategory(e.currentTarget.value)
+	}
 	return (
 		<div style={{ maxWidth:'700px', margin:'2rem auto' }}>
 			<div style = {{ textAlign:'center', marginBottom:'2rem' }}>
@@ -78,14 +84,14 @@ function VideoUploadPage() {
 			<br />
 			<br />
 
-			<select onChange>			
+			<select onChange={onPrivateChange}>			
 				{PrivateOptions.map((item, index) => (
-					<option key={index} value = {item.value}>{item.label}</option>
+					<option key={index} Dvalue = {item.value}>{item.label}</option>
 				))}
 			</select>
 			<br />
 			<br />
-			<select onChange>
+			<select onChange={onCategoryChange}>
 				{CategoryOptions.map((item, index) => (
 					<option key={index} value = {item.value}>{item.label}</option>
 				))}
