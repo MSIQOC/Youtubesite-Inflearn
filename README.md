@@ -1,2 +1,18 @@
-# 유튜브 사이트 만들기
-백엔드를 공부하면서 프론트엔드의 동작 과정도 함께 배워야하는 과정이 필요하다고 생각해서 인프런의 유튜브 사이트 만들기 강의를 참고해서 공부해보았습니다.
+Hello, My Friends  
+Thank you for having interest in this repository ! 
+
+To use this application, 
+
+1. make dev.js file inside config folder 
+2. put mongoDB info into dev.js file 
+3. Type  " npm install " inside the root directory  ( Download Server Dependencies ) 
+4. Type " npm install " inside the client directory ( Download Front-end Dependencies )
+
+
+If you have problem, feel free to ask me ^^ 
+
+You can watch the tutorial for this app.
+
+https://www.youtube.com/channel/UCFyXA9x8lpL3EYWeYhj4C4Q?view_as=subscriber
+
+

@@ -19,7 +19,6 @@ function RightMenu(props) {
     });
   };
 
-  // 유저가 로그인이 안된 상태면 Signin, Signup등이 존재.
   if (user.userData && !user.userData.isAuth) {
     return (
       <Menu mode={props.mode}>
@@ -31,14 +30,9 @@ function RightMenu(props) {
         </Menu.Item>
       </Menu>
     )
-
-    // 그렇지 않고 로그인 한 상태면 logout으로 오른쪽 메뉴가 바뀐다.
   } else {
     return (
       <Menu mode={props.mode}>
-        <Menu.Item key="upload">
-          <a href="/video/upload">Video</a>
-        </Menu.Item>
         <Menu.Item key="logout">
           <a onClick={logoutHandler}>Logout</a>
         </Menu.Item>
