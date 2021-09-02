@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Typography, Button, Form, message, Input, Icon } from 'antd';
 import Dropzone from 'react-dropzone';
-import axios from 'axios';
+import Axios from 'axios';
 const { TextArea } = Input;
 const { Title } = Typography;
 
@@ -48,7 +48,7 @@ function VideoUploadPage() {
         formData.append("file", files[0])
 
         // 서버에 보내기. 서버쪽에서 '/api/video/uploadfiles'에 대한 라우트 만들어야함.
-        axios.post('/api/video/uploadfiles', formData, config)
+        Axios.post('/api/video/uploadfiles', formData, config)
         .then(response => {
             if(response.data.success) {
                 console.log(response.data)
