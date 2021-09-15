@@ -9303,10 +9303,10 @@
     "prop-types" "^15.6.2"
     "scheduler" "^0.19.1"
 
-"react-dropzone@^11.3.4":
-  "integrity" "sha512-B1nzNRZ4F1cnrfEC0T6KXeBN1mCPinu4JCoTrp7NjB+442KSPxqfDrw41QIA2kAwlYs1+wj/0BTedeM5hc2+xw=="
-  "resolved" "https://registry.npmjs.org/react-dropzone/-/react-dropzone-11.3.4.tgz"
-  "version" "11.3.4"
+"react-dropzone@^11.4.0":
+  "integrity" "sha512-5NRpAN4ZmpEn0kvtkO18rPInE7n4eVjGeTLP/c0JcGAnV+5yrpr5QHdPH27M05SP2tsjkRoRf02DCK/4fxbsog=="
+  "resolved" "https://registry.npmjs.org/react-dropzone/-/react-dropzone-11.4.0.tgz"
+  "version" "11.4.0"
   dependencies:
     "attr-accept" "^2.2.1"
     "file-selector" "^0.2.2"

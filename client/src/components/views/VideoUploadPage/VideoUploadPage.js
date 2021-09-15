@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Typography, Button, Form, message, Input, Icon } from 'antd';
 import Dropzone from 'react-dropzone';
-import Axios from 'axios';
+//import Axios from 'axios';
 const { TextArea } = Input;
 const { Title } = Typography;
 
