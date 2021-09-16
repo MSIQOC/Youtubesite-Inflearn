@@ -11,7 +11,7 @@
     "start": "node server/index.js",
     "backend": "nodemon server/index.js",
     "frontend": "set PORT=9000 && npm run start --prefix client",
-    "dev": "concurrently \"npm run backend\" \"set PORT=9000 && npm run start --prefix client\""
+    "dev": "concurrently \"npm run backend\" \"set PORT=8000 && npm run start --prefix client\""
   },
   "author": "John ahn",
   "license": "ISC",
