@@ -16,6 +16,8 @@ const CategoryOptions = [
 	{ value: 3, label: "Pets & Animals"},
 ]
 
+
+
 //functional component
 function VideoUploadPage() {
 
@@ -27,6 +29,10 @@ function VideoUploadPage() {
 
 	// 카테고리는 처음 미리 선택돼있는게 Film & Animation이기 때문에 그렇게 설정해준다.
 	const [Category, setCategory] = useState("Film & Animation")
+	const [File, setFilePath] = useState("")
+	const [Duration, setDuration] = useState("")
+	const [ThumbnailPath, setThumbnailPath] = useState("")
+
 	const onTitleChange = (e) => {
 		setVideoTitle(e.currentTarget.value)
 	}
@@ -50,6 +56,24 @@ function VideoUploadPage() {
 			.then(response => {
 				if(response.data.success) {
 					console.log(response.data)
+					
+					let variable = {
+						url: response.data.url, //서버에서 response.data.url을 받았다고 한다.
+						fileName: response.data.fileName
+					}
+
+					setFilePath(response.data.url)
+
+					Axios.post('/api/video/thumbnail', variable)
+					.then(response => {
+						if(response.data.success) {
+							setDuration(response.data.fileDuration)
+							setThumbnailPath(response.data.url) //video.js의 'end'에서 url로 해줬기 때문에 여기에서도 response.data.url로 해준다.
+						} else {
+							alert('썸네일 생성에 실패 했습니다.')
+						}
+					})
+
 				} else{
 					alert('비디오 업로드를 실패했습니다.')
 				}
@@ -78,11 +102,13 @@ function VideoUploadPage() {
 						</div>	
 					)}
 					</Dropzone>
-
-					{}
-					<div>
-						<img src alt />
-					</div>
+					{/* Thumbnail */}
+					{/*이 말은 ThumbnailPath가 있을 때에만 렌더링 되라는 뜻이다.*/}
+					{ThumbnailPath && 
+						<div>
+							<img src={`http://localhost:5000/${ThumbnailPath}`} alt="thumbnail" />
+						</div>
+					}
 				</div>
 			<br />
 			<br />
