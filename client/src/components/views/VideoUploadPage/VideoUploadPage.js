@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Typography, Button, Form, message, Input, Icon } from 'antd';
 import Dropzone from 'react-dropzone';
 import Axios from 'axios';
+import { useSelector } from 'react-redux';
 const { TextArea } = Input;
 const { Title } = Typography;
 
@@ -20,7 +21,7 @@ const CategoryOptions = [
 
 //functional component
 function VideoUploadPage() {
-
+	const user = useSelector(state => state.user)
 	const [VideoTitle, setVideoTitle] = useState("")
 	const [Description, setDescription] = useState("")
 
@@ -29,7 +30,7 @@ function VideoUploadPage() {
 
 	// 카테고리는 처음 미리 선택돼있는게 Film & Animation이기 때문에 그렇게 설정해준다.
 	const [Category, setCategory] = useState("Film & Animation")
-	const [File, setFilePath] = useState("")
+	const [FilePath, setFilePath] = useState("")
 	const [Duration, setDuration] = useState("")
 	const [ThumbnailPath, setThumbnailPath] = useState("")
 
@@ -79,13 +80,39 @@ function VideoUploadPage() {
 				}
 			})
 	}
+
+	const onSumit = (e) => {
+		e.preventDefault();
+
+		// Video에서 정보들을 가져와서 submit 버튼을 누를 때 보내준다.
+		const variables = {
+			writer: user.userData._id, //여기는 리덕스에서 가져오기
+			title: VideoTitle, //나머지는 다 state에서 가져온다.
+			description: Description,
+			privacy: Private,
+			filePath: FilePath,
+			category: Category,
+			duration: Duration,
+			thumbnail: ThumbnailPath
+		}
+
+		Axios.post('/api/video/uploadVideo', variables)
+			.then(response => {
+				if(response.data.success) {
+
+				} else {
+					alert('비디오 업로드에 실패했습니다.')
+				}
+			})
+	}
+
 	return (
 		<div style={{ maxWidth:'700px', margin:'2rem auto' }}>
 			<div style = {{ textAlign:'center', marginBottom:'2rem' }}>
 				<Title level={2}>Upload Video</Title>
 			</div>
 
-			<Form onSubmit>
+			<Form onSubmit={onSumit}>
 				<div style={{ display:'flex', justifyContent:'space-between' }}>
 
 					{/* Drop zone */}
@@ -141,7 +168,7 @@ function VideoUploadPage() {
 			</select>
 			<br />
 			<br />
-			<Button type="primary" size="large" onClick>
+			<Button type="primary" size="large" onClick={onSumit}>
 				Submit
 			</Button>
 			</Form>
