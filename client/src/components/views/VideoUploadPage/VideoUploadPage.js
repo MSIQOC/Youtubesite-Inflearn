@@ -103,7 +103,7 @@ function VideoUploadPage() {
 				} else {
 					alert('비디오 업로드에 실패했습니다.')
 				}
-			})
+			})  
 	}
 
 	return (

@@ -50,6 +50,17 @@ router.post('/uploadVideo', (req, res) => {
     }) 
 })
 
+router.get('/getVideos', (req, res) => {
+    
+    // 비디오를 DB에서 가져와서 클라이언트에 보낸다.
+    Video.find() // 비디오 콜렉션 안의 모든 비디오 가져오기
+        .populate('writer') // populate을 해줘야 모든 writer 정보 가져오기 가능. 안해주면 writer의 id만 가져오기 가능.
+        .exec((err, videos) => {
+            if(err) return res.status(400).send(err)
+            res.status(200).json({ success:true, videos })
+        })
+})
+
 router.post('/thumbnail', (req, res) => {
     // 썸네일 생성 하고 비디오 러닝타임도 가져오기
     
