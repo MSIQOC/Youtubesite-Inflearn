@@ -30,7 +30,7 @@ function LandingPage() {
 
         return <Col lg={6} md={8} xs={24}>
             <div style={{ position: 'relative' }}>
-                <a href={`/video/${video._id}`} >
+                <a href={`/video/${video._id}`} > {/*Video.map에 있는 video에서의 _id를 가져온다.*/}
                 <img style={{ width: '100%' }} alt="thumbnail" src={`http://localhost:5000/${video.thumbnail}`} />
                 <div className=" duration"
                     style={{ bottom: 0, right:0, position: 'absolute', margin: '4px', 
