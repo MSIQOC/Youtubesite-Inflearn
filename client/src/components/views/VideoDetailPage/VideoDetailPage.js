@@ -17,6 +17,7 @@ function VideoDetailPage(props){
         Axios.post('/api/video/getVideoDetail', variable)
             .then(response => {
                 if(response.data.success) {
+                    console.log(response.data)
                     setVideoDetail(response.data.videoDetail)
                 } else {
                     alert('비디오 정보를 가져오길 실패했습니다.')
@@ -29,8 +30,8 @@ function VideoDetailPage(props){
         return (
             <Row>
                 <Col lg={18} xs={24}>
-                    <div className="postPage" style={{ width: '100%', padding: '3rem 4em' }}>
-                    <video style={{ width: '100%' }} src={`http://localhost:5000/${VideoDetail.filePath}`} controls></video>
+                    <div className="postPage" style={{ width: '100%', padding: '3rem 4rem' }}>
+                        <video style={{ width: '100%' }} src={`http://localhost:5000/${VideoDetail.filePath}`} controls></video>
 
                         <List.Item
                             actions

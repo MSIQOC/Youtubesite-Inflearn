@@ -54,23 +54,26 @@ router.get('/getVideos', (req, res) => {
     
     // 비디오를 DB에서 가져와서 클라이언트에 보낸다.
     Video.find() // 비디오 콜렉션 안의 모든 비디오 가져오기
-        .populate('writer') // populate을 해줘야 모든 writer 정보 가져오기 가능. 안해주면 writer의 id만 가져오기 가능.
+        .populate("writer") // populate을 해줘야 모든 writer 정보 가져오기 가능. 안해주면 writer의 id만 가져오기 가능.
         .exec((err, videos) => {
             if(err) return res.status(400).send(err)
             res.status(200).json({ success:true, videos })
         })
 })
 
-router.get('/getVideoDetail', (req, res) => {
-    
-    //req.body.videoId는 클라이언트에서 보낸 비디오 아이디를 넣어서 아이디를 이용해서 비디오를 찾겠다는 뜻.
-    Video.findOne({ "_id" : req.body.videoId }) //여기까지는 id만 있단걸 알 수 있음
-        .populate('writer') //이걸 해줌으로써 writer에 대한 모든 정보를 가져오는게 가능하다.
+router.post("/getVideoDetail", (req, res) => {
+
+    // 몽구스를 사용할 경우 기존 강의대로 하면 videoId를 못찾기 때문에 다음과 같이 수정해줘야한다.
+    let ObjectId = require('mongoose').Types.ObjectId;
+    let videoId = req.body.videoId;	//req.body.videoId는 클라이언트에서 보낸 비디오 아이디를 넣어서 아이디를 이용해서 비디오를 찾겠다는 뜻.
+    Video.findOne({"_id": new ObjectId(videoId)})
+        .populate("writer") //이걸 해줌으로써 writer에 대한 모든 정보를 가져오는게 가능하다.
         .exec((err, videoDetail) => {
-            if(err) return res.status(400).send(err)
-            return res.status(200).json({ success: true, videoDetail })
+            if(err) return res.status(400).send(err);
+            return res.status(200).json({success: true, videoDetail})
         })
-})
+    
+});
 
 router.post('/thumbnail', (req, res) => {
     // 썸네일 생성 하고 비디오 러닝타임도 가져오기
