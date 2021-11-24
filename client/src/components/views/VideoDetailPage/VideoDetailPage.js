@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Row, Col, List, Avatar } from 'antd' //창 사이즈 작아지면 다른 영상들이 밑으로 내려가거나 하는거 구현
 import Axios from 'axios'
+import SideVideo from './Sections/SideVideo'
 
 function VideoDetailPage(props){
 
@@ -47,7 +48,7 @@ function VideoDetailPage(props){
                     </div>
                 </Col>
                 <Col lg={6} xs={24}>
-                    Side Videos
+                    <SideVideo />
                 </Col>
             </Row>
         )
