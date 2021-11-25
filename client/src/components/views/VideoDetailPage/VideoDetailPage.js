@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Row, Col, List, Avatar } from 'antd' //창 사이즈 작아지면 다른 영상들이 밑으로 내려가거나 하는거 구현
 import Axios from 'axios'
 import SideVideo from './Sections/SideVideo'
+import Subscribe from './Sections/Subscribe'
 
 function VideoDetailPage(props){
 
@@ -35,7 +36,7 @@ function VideoDetailPage(props){
                         <video style={{ width: '100%' }} src={`http://localhost:5000/${VideoDetail.filePath}`} controls></video>
 
                         <List.Item
-                            actions
+                            actions={[<Subscribe userTo={VideoDetail.writer._id}/>]}
                         >
                             <List.Item.Meta
                                 avatar={<Avatar src={VideoDetail.writer && VideoDetail.writer.image} />} //이렇게 할 수 있는 이유가 writer를 populate 했기 때문이다.
