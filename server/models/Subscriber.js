@@ -16,6 +16,6 @@ const subscriberSchema = mongoose.Schema({
 }, { timestamps: true}) // 만든 date과 업데이트한 date이 표시가 되게 된다.
 
 
-const Video = mongoose.model('Subscriber', subscriberSchema);
+const Subscriber = mongoose.model('Subscriber', subscriberSchema);
 
 module.exports = { Subscriber }

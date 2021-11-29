@@ -28,6 +28,7 @@ function VideoDetailPage(props){
 
     }, [])
 
+    //여기에서 왜 VideoDetail.writer가 가능한지는 조금 더 고민해봐야 한다. => video.js에서 writer를 populate 해줬기 때문으로 추정.
     if (VideoDetail.writer) {
         return (
             <Row>
@@ -36,7 +37,7 @@ function VideoDetailPage(props){
                         <video style={{ width: '100%' }} src={`http://localhost:5000/${VideoDetail.filePath}`} controls></video>
 
                         <List.Item
-                            actions={[<Subscribe userTo={VideoDetail.writer._id}/>]}
+                            actions={[<Subscribe userTo={VideoDetail.writer._id} userFrom={localStorage.getItem('userId')}/>]}
                         >
                             <List.Item.Meta
                                 avatar={<Avatar src={VideoDetail.writer && VideoDetail.writer.image} />} //이렇게 할 수 있는 이유가 writer를 populate 했기 때문이다.
